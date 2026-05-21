@@ -1,0 +1,134 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, development, uat ]
+  pull_request:
+    branches: [ main, development, uat ]
+
+env:
+  PHP_VERSION: '8.3'
+
+jobs:
+  # a. ТЕСТЫ
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Copy CI environment file
+        run: cp .env.ci .env
+
+      - name: Generate app key
+        run: php artisan key:generate
+
+      - name: Run tests with coverage
+        run: php artisan test --coverage --min=50
+
+  # b. СТАТИЧЕСКИЙ АНАЛИЗ (PHPStan)
+  static-analysis:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse --error-format=github --no-progress
+
+  # c. LINTING (Laravel Pint)
+  linting:
+    runs-on: ubuntu-latest
+    needs: static-analysis
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run Laravel Pint (test mode)
+        run: ./vendor/bin/pint --test --preset=psr12
+
+  # d. СИМУЛЯЦИЯ ДЕПЛОЯ
+  deploy-simulation:
+    runs-on: ubuntu-latest
+    needs: linting
+    if: success()
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine environment
+        id: env
+        run: |
+          if [[ "${{ github.ref_name }}" == "development" ]]; then
+            echo "ENV=dev" >> $GITHUB_OUTPUT
+            echo "DEPLOY_ENV=Development" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref_name }}" == "uat" ]]; then
+            echo "ENV=uat" >> $GITHUB_OUTPUT
+            echo "DEPLOY_ENV=UAT" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "ENV=prod" >> $GITHUB_OUTPUT
+            echo "DEPLOY_ENV=Production" >> $GITHUB_OUTPUT
+          else
+            echo "ENV=ci" >> $GITHUB_OUTPUT
+            echo "DEPLOY_ENV=CI" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Copy environment file
+        run: cp .env.${{ steps.env.outputs.ENV }} .env
+
+      - name: Deploy to ${{ steps.env.outputs.DEPLOY_ENV }}
+        run: |
+          echo "========================================="
+          echo "Deploying to ${{ steps.env.outputs.DEPLOY_ENV }} with .env.${{ steps.env.outputs.ENV }}"
+          echo "========================================="
+          cat .env | grep APP_
+
+  # Ручной аппрув для PRODUCTION (только для main)
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: deploy-simulation
+    if: github.ref_name == 'main' && success()
+    environment:
+      name: production
+      url: https://example.com
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy production environment file
+        run: cp .env.prod .env
+
+      - name: Production Deployment Simulation
+        run: |
+          echo "========================================="
+          echo "🚀 DEPLOYING TO PRODUCTION (MANUAL APPROVAL REQUIRED)"
+          echo "Using .env.prod"
+          echo "========================================="
+
+      - name: Send notification
+        run: |
+          echo "Pipeline completed successfully!"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Status: ✅ SUCCESS"
+          echo "Production deployment approved manually!"
