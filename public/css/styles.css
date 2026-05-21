@@ -1,0 +1,1149 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: verdana;
+    background: #ccc;
+}
+
+h2 {
+    color: #00044c;
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+}
+
+.btn {
+    cursor: pointer;
+    border: 2px solid #20416c;
+    padding: 10px 30px;
+    background: transparent;
+    box-sizing: border-box;
+    font-size: 12.5px;
+    color: #20416c;
+    transition: background .2s, transform .2s, color .2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background: #20416c;
+    color: #fff;
+}
+
+.row {
+    max-width: 1100px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background: #fff;
+    min-width: 640px;
+}
+
+.row--nogutter {
+    padding: 0;
+}
+
+.row--small {
+    background: #fff;
+    max-width: 995px;
+    margin: 0 auto;
+    min-width: 640px;
+}
+
+.grid {
+    display: flex;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.middle {
+    align-items: center;
+}
+
+/* HEADER */
+.header {
+    color: #00044c;
+}
+
+.header .title {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.header .auth {
+    position: relative;
+}
+
+
+
+/* MAIN */
+.main .row {
+    padding: 0;
+    position: relative;
+}
+
+.dp .main .row {
+    padding-bottom: 40px;
+}
+
+.main .hover {
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    position: absolute;
+    background: url('../img/hover.png');
+    height: 442px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main .content {
+    padding: 30px;
+    box-sizing: border-box;
+    background: #fff;
+    width: 100%;
+    max-width: 664px;
+    color: rgb(0, 4, 76);
+    position: relative;
+    font-size: 16.667px;
+    line-height: 1.5;
+    box-shadow: 0px 0px 9.4px 0.6px rgba(0, 0, 0, 0.16);
+}
+
+.main .content p {
+    text-indent: 30px;
+}
+
+.main .content span {
+    color: #2b2586;
+    font-weight: bold;
+}
+
+.main .title {
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.35);
+    font-size: 66px;
+    font-weight: bold;
+    color: #fff;
+    padding-top: 100px;
+    padding-bottom: 105px;
+    text-align: center;
+    position: relative;
+}
+
+.main .content img {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.main .menu {
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0;
+    background: #20416c;
+    list-style-type: none;
+    max-width: 285px;
+    height: 100%;
+}
+
+.main .menu li {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.main .menu li:last-child {
+    margin-bottom: 0;
+}
+
+.main .menu li a {
+    background: #516b8c;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff;
+    position: relative;
+    text-decoration: none;
+    padding-left: 45px;
+    display: block;
+    transition: all .2s ease;
+}
+
+.main .menu li a:hover {
+    transform: scale(1.05);
+}
+
+.main .menu li a::before {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    display: block;
+    content: '';
+}
+
+/* SCHEDULE (РАСПИСАНИЕ) */
+.shedule {
+    color: #fff;
+    background: #20416c;
+    padding-bottom: 60px !important;
+}
+
+.shedule .row--small {
+    background: transparent;
+}
+
+.shedule h2 {
+    color: #fff;
+    padding-top: 55px;
+    padding-bottom: 55px;
+    font-weight: bold;
+    font-size: 37.5px;
+}
+
+.driver {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 60px;
+}
+
+.driver-left {
+    flex: 1;
+    margin-right: 55px;
+}
+
+.driver-right {
+    min-width: 220px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.driver:last-child {
+    margin-bottom: 0px;
+}
+
+.driver-photo {
+    margin-right: 20px;
+}
+
+.driver-photo img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.driver-name {
+    font-size: 16.667px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.driver-desc {
+    font-size: 16.667px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.driver-info {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.driver-btn {
+    cursor: pointer;
+    border: 3px solid #fff;
+    padding: 10px 20px;
+    background: transparent;
+    box-sizing: border-box;
+    font-size: 16.667px;
+    color: #fff;
+    transition: all .2s ease;
+    white-space: nowrap;
+    width: 100%;
+    min-width: 180px;
+    max-width: 200px;
+    border-radius: 5px;
+}
+
+.driver-btn:hover {
+    background: #fff;
+    color: #20416c;
+    transform: scale(1.05);
+}
+
+.driver-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.driver-time {
+    font-size: 12.5px;
+    text-align: center;
+    margin-top: 15px;
+    white-space: nowrap;
+    color: #ffffff;
+}
+
+.driver-page {
+    position: relative;
+}
+
+.driver-page-photo {
+    margin-top: -139px;
+    width: 180px;
+}
+
+.driver-page-photo img {
+    float: none !important;
+    width: 100%;
+    border: 10px solid #fff;
+    border-radius: 50%;
+}
+
+.driver-page-name {
+    text-shadow: 0px 0px 1.56px rgba(0, 0, 0, 0.004);
+    position: absolute;
+    font-size: 24px;
+    top: -65px;
+    left: 38%;
+    font-weight: bold;
+    color: #fff;
+}
+
+.driver-page-text {
+    padding-left: 220px;
+    padding-top: 25px;
+    margin-top: -100px;
+}
+
+.driver-page-my {
+    font-size: 24px;
+    font-weight: bold;
+    color: #20416c;
+    margin-bottom: 35px;
+}
+
+.driver-page-table {
+    font-size: 12px;
+    color: #20416c;
+    border-collapse: collapse;
+}
+
+.driver-page-table p {
+    text-indent: 0 !important;
+}
+
+.driver-page-table tr td:first-child {
+    vertical-align: top;
+    padding-right: 15px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.driver-page-table tr td:last-child {
+    border-left: 1px solid #ccc;
+    padding-left: 15px;
+}
+
+.driver-page-btn-wrapper {
+    text-align: center;
+}
+
+.driver-page-btn {
+    margin-top: 30px;
+    cursor: pointer;
+    border: 3px solid #20416c;
+    padding: 10px 30px;
+    background: transparent;
+    box-sizing: border-box;
+    font-size: 12.5px;
+    color: #20416c;
+    transition: all .2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.driver-page-btn:hover {
+    transform: scale(1.05);
+}
+
+/* LINE */
+.line {
+    height: 27px;
+    background: #20416c;
+}
+
+/* FOOTER */
+.footer {
+    font-size: 16.667px;
+    font-weight: bold;
+}
+
+.footer .row {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+}
+
+.footer .address {
+    color: #20416c;
+}
+
+.footer .tel {
+    color: #2b2586;
+}
+
+.footer .copy {
+    color: #376e8b;
+}
+
+/* MENU BURGER */
+.menu-burger {
+    display: none;
+    text-align: center;
+    background: #20416c;
+}
+
+.burger {
+    cursor: pointer;
+    padding: 15px 0;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.burger div {
+    height: 5px;
+    background: #fff;
+    width: 37px;
+    margin: 7px;
+}
+
+/* FORM */
+form {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.form-group textarea {
+    width: 100%;
+    min-height: 130px;
+}
+
+.form-group input {
+    width: 200px;
+}
+
+.form-group select {
+    width: 200px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    border: 2px solid #20416c;
+    padding: 8px;
+}
+.driver-btn {
+    white-space: normal !important;
+    word-break: keep-all;
+    line-height: 1.3;
+    padding: 10px 5px;
+    font-size: 14px;
+    min-width: 180px;
+    height: auto;
+}
+
+
+.auth {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.auth a, .auth button {
+    font-size: 16px;
+    color: #00044c;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.auth a:hover, .auth button:hover {
+    text-decoration: underline;
+}
+
+
+/* ВЫРАВНИВАНИЕ ССЫЛОК И КНОПОК В ШАПКЕ */
+.header .auth {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.header .auth a,
+.header .auth button {
+    padding-left: 0 !important;
+    font-size: 16px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+}
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+/* ВЫРАВНИВАНИЕ ШАПКИ */
+.header .auth {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 25px;
+}
+
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* ВЕРТИКАЛЬНОЕ РАСПОЛОЖЕНИЕ В ШАПКЕ */
+.header .auth {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    padding-left: 25px;
+}
+
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* ВЕРТИКАЛЬНОЕ РАСПОЛОЖЕНИЕ В ШАПКЕ - МАЛЕНЬКИЙ ШРИФТ */
+.header .auth {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    padding-left: 20px;
+}
+
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* ВЕРТИКАЛЬНОЕ РАСПОЛОЖЕНИЕ В ШАПКЕ */
+.header .auth {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    padding-left: 20px;
+}
+
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* ВОССТАНОВЛЕНИЕ СТАРОГО ШРИФТА В ШАПКЕ */
+.header .auth {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    padding-left: 25px;
+}
+
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: verdana;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* СТИЛЬ ШАПКИ КАК В СТАРОМ ПРОЕКТЕ */
+.header .auth {
+    position: relative;
+    padding-left: 25px;
+}
+
+.header .auth::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    width: 16px;
+    background: url('/img/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto 0;
+}
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 0;
+    margin: 0;
+    font-family: verdana;
+    display: block;
+    text-align: left;
+    width: 100%;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* УМЕНЬШЕНИЕ РАССТОЯНИЯ МЕЖДУ ССЫЛКАМИ В ШАПКЕ */
+.header .auth {
+    position: relative;
+    padding-left: 25px;
+}
+
+.header .auth::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 14px;
+    width: 14px;
+    background: url('/img/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto 0;
+}
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: verdana;
+    display: block;
+    text-align: left;
+    line-height: 1.3;
+}
+
+.header .auth a + form,
+.header .auth form + a {
+    margin-top: 2px;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+/* СТИЛЬ ШАПКИ - БОЛЬШОЙ ШРИФТ, БЕЗ ЛИШНИХ ИНТЕРВАЛОВ */
+.header .auth {
+    position: relative;
+    padding-left: 25px;
+}
+
+.header .auth::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    width: 16px;
+    background: url('/img/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto 0;
+}
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: verdana;
+    display: block;
+    text-align: left;
+    line-height: 1.2;
+}
+
+.header .auth a + form,
+.header .auth form + a {
+    margin-top: 0;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    line-height: 1.2;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+/* ВЫРАВНИВАНИЕ ТЕКСТА ПОД СТРЕЛОЧКУ */
+.header .auth {
+    position: relative;
+    padding-left: 25px;
+    text-align: left;
+}
+
+.header .auth::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    width: 16px;
+    background: url('/img/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto 0;
+}
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 0;
+    margin: 0;
+    font-family: verdana;
+    display: block;
+    text-align: left;
+    width: 100%;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* ВЫРАВНИВАНИЕ ШАПКИ */
+.header .auth {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 25px;
+}
+
+.header .auth::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    width: 16px;
+    background: url('/img/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto 0;
+}
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: verdana;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* ПОДСКАЗКИ В ФОРМАХ */
+.form-group .hint {
+    display: block;
+    font-size: 11px;
+    color: #666;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+/* ГОРИЗОНТАЛЬНОЕ РАСПОЛОЖЕНИЕ ДЛЯ НЕ АВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ */
+.header .auth {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 25px;
+}
+
+/* Для неавторизованных пользователей — горизонтально */
+.header .auth:not(:has(form)) {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.header .auth:not(:has(form)) a {
+    display: inline;
+    padding: 0;
+}
+
+.header .auth::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    width: 16px;
+    background: url('/img/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto 0;
+}
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: verdana;
+}
+
+/* Для авторизованных — вертикально */
+.header .auth:has(form) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.header .auth:has(form) a,
+.header .auth:has(form) button {
+    display: block;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* ВЕРТИКАЛЬНОЕ РАСПОЛОЖЕНИЕ ДЛЯ ВСЕХ */
+.header .auth {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 25px;
+    gap: 3px;
+}
+
+.header .auth::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    width: 16px;
+    background: url('/img/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto 0;
+}
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: verdana;
+    display: block;
+    text-align: left;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+/* ПРИНУДИТЕЛЬНО ВЕРТИКАЛЬНО ДЛЯ ВСЕХ */
+.header .auth {
+    position: relative;
+    display: block !important;
+    padding-left: 25px;
+}
+
+.header .auth::before {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    width: 16px;
+    background: url('/img/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto 0;
+}
+
+.header .auth a,
+.header .auth button {
+    color: #00044c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-family: verdana;
+    display: block !important;
+    text-align: left;
+    width: 100%;
+}
+
+.header .auth a:hover,
+.header .auth button:hover {
+    text-decoration: underline;
+}
+
+.header .auth form {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+
+.header .auth a + a,
+.header .auth a + form,
+.header .auth form + a {
+    margin-top: 5px;
+}
