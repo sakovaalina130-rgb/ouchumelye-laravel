@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\CraftType;
 use App\Models\MasterClass;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CraftTest extends TestCase
 {
@@ -20,7 +20,7 @@ class CraftTest extends TestCase
         ]);
 
         $response = $this->get('/craft/' . $craft->id);
-        
+
         $response->assertStatus(200);
         $response->assertSee('Тестовый вид');
     }
@@ -41,7 +41,7 @@ class CraftTest extends TestCase
             'phone' => '+79123456789',
             'role' => 2,
         ]);
-        
+
         $masterClass = MasterClass::create([
             'craft_type_id' => $craft->id,
             'master_id' => $master->id,
@@ -76,7 +76,7 @@ class CraftTest extends TestCase
             'phone' => '+79123456789',
             'role' => 2,
         ]);
-        
+
         $masterClass = MasterClass::create([
             'craft_type_id' => $craft->id,
             'master_id' => $master->id,

@@ -9,7 +9,7 @@ class CabinetController extends Controller
     public function index()
     {
         $user = Auth::user();
-        
+
         if ($user->isMaster()) {
             $masterClasses = $user->masterClasses()->with(['craftType', 'registrations.user'])->get();
             return view('cabinet.master', compact('user', 'masterClasses'));

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MasterClass extends Model
 {
@@ -11,24 +13,33 @@ class MasterClass extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['craft_type_id', 'master_id', 'title', 'description', 'date', 'time_slot', 'max_participants', 'price'];
+    protected $fillable = [
+        'craft_type_id',
+        'master_id',
+        'title',
+        'description',
+        'date',
+        'time_slot',
+        'max_participants',
+        'price'
+    ];
 
     protected $casts = [
         'date' => 'date',
         'price' => 'decimal:2',
     ];
 
-    public function craftType()
+    public function craftType(): BelongsTo
     {
         return $this->belongsTo(CraftType::class);
     }
 
-    public function master()
+    public function master(): BelongsTo
     {
         return $this->belongsTo(User::class, 'master_id');
     }
 
-    public function registrations()
+    public function registrations(): HasMany
     {
         return $this->hasMany(Registration::class);
     }

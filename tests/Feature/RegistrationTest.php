@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\CraftType;
 use App\Models\MasterClass;
 use App\Models\Registration;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Tests\TestCase;
 
 class RegistrationTest extends TestCase
 {
@@ -25,7 +25,7 @@ class RegistrationTest extends TestCase
             'phone' => '+79123456789',
             'role' => 2,
         ]);
-        
+
         $masterClass = MasterClass::create([
             'craft_type_id' => $craft->id,
             'master_id' => $master->id,
@@ -59,7 +59,7 @@ class RegistrationTest extends TestCase
             'phone' => '+79123456789',
             'role' => 2,
         ]);
-        
+
         $masterClass = MasterClass::create([
             'craft_type_id' => $craft->id,
             'master_id' => $master->id,
@@ -94,7 +94,7 @@ class RegistrationTest extends TestCase
             'phone' => '+79123456789',
             'role' => 2,
         ]);
-        
+
         $masterClass = MasterClass::create([
             'craft_type_id' => $craft->id,
             'master_id' => $master->id,
@@ -107,10 +107,10 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->actingAs($user);
-        
+
         $this->post('/register-master-class', ['master_class_id' => $masterClass->id]);
         $response = $this->post('/register-master-class', ['master_class_id' => $masterClass->id]);
-        
+
         $response->assertSessionHas('error');
         $this->assertEquals(1, Registration::count());
     }
