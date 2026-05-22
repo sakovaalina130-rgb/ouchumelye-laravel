@@ -50,9 +50,6 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Copy CI environment file
-        run: cp .env.ci .env
-
       - name: Run PHPStan
         run: ./vendor/bin/phpstan analyse --memory-limit=512M
 
@@ -123,3 +120,29 @@ jobs:
           echo "🚀 DEPLOYING TO PRODUCTION (MANUAL APPROVAL REQUIRED)"
           echo "Using .env.prod"
           echo "========================================="
+
+  send-notification:
+    runs-on: ubuntu-latest
+    needs: [tests, static-analysis, linting]
+    if: always() && (needs.tests.result == 'success' || needs.tests.result == 'failure')
+    steps:
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "${{ needs.tests.result == 'success' && '✅' || '❌' }} CI/CD Pipeline - ${{ github.repository }}"
+          to: ${{ secrets.MAIL_FROM_ADDRESS }}
+          from: ${{ secrets.MAIL_FROM_ADDRESS }}
+          body: |
+            Pipeline completed!
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Status: ${{ needs.tests.result == 'success' && '✅ SUCCESS' || '❌ FAILURE' }}
+            Tests: ${{ needs.tests.result }}
+            Static Analysis: ${{ needs.static-analysis.result }}
+            Linting: ${{ needs.linting.result }}
+            Run URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
