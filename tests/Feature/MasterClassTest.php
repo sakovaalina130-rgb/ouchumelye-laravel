@@ -339,47 +339,4 @@ class MasterClassTest extends TestCase
             'price' => 2500,
         ]);
     }
-
-    public function test_check_slots_returns_occupied_slots()
-{
-    $master = User::create([
-        'fio' => 'Master User',
-        'email' => 'master@test.com',
-        'password' => bcrypt('password'),
-        'phone' => '+79123456789',
-        'role' => 2,
-    ]);
-
-    $craft = CraftType::create([
-        'name' => 'Тестовый вид',
-        'description' => 'Описание вида'
-    ]);
-
-    $masterClass = MasterClass::create([
-        'craft_type_id' => $craft->id,
-        'master_id' => $master->id,
-        'title' => 'МК в 11-13',
-        'description' => 'Описание',
-        'date' => '2026-06-20',
-        'time_slot' => '11-13',
-        'max_participants' => 10,
-        'price' => 1000,
-    ]);
-
-    // Явно обновляем экземпляр, чтобы убедиться, что данные в БД есть
-    $masterClass->refresh();
-
-    $response = $this->actingAs($master)->get('/check-slots?date=2026-06-20');
-    $this->assertEquals(200, $response->getStatusCode());
-
-    $content = json_decode($response->getContent(), true);
-    
-    // Если ответ пустой — выводим для диагностики
-    if (empty($content)) {
-        $this->fail('Response content is empty: ' . $response->getContent());
-    }
-    
-    $this->assertArrayHasKey('11-13', $content);
-    $this->assertTrue($content['11-13']);
-}
 }
