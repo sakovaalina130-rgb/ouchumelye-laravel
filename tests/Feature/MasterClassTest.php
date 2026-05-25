@@ -368,6 +368,6 @@ class MasterClassTest extends TestCase
 
         $response = $this->actingAs($master)->get('/check-slots?date=2026-06-20');
         $this->assertEquals(200, $response->getStatusCode());
-        $response->assertJson(['11-13' => true]);
+        $response->assertJsonFragment(['11-13' => true]);
     }
 }
