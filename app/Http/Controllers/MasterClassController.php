@@ -24,14 +24,14 @@ class MasterClassController extends Controller
         $this->checkMaster();
         $craftTypes = CraftType::all();
         $timeSlots = ['9-11', '11-13', '13-15', '15-17'];
-
+        
         return view('master-classes.create', compact('craftTypes', 'timeSlots'));
     }
 
     public function store(Request $request)
     {
         $this->checkMaster();
-
+        
         $validated = $request->validate([
             'craft_type_id' => 'required|exists:craft_types,id',
             'title' => 'required|string|min:5|max:100',
@@ -68,18 +68,18 @@ class MasterClassController extends Controller
     public function edit($id)
     {
         $this->checkMaster();
-
+        
         $masterClass = MasterClass::where('id', $id)
             ->where('master_id', Auth::id())
             ->firstOrFail();
-
+        
         return view('master-classes.edit', compact('masterClass'));
     }
 
     public function update(Request $request, $id)
     {
         $this->checkMaster();
-
+        
         $masterClass = MasterClass::where('id', $id)
             ->where('master_id', Auth::id())
             ->firstOrFail();
@@ -95,18 +95,25 @@ class MasterClassController extends Controller
 
     public function checkSlots(Request $request)
     {
+        $date = $request->query('date');
+        
         if (!Auth::check()) {
             return response()->json([]);
         }
-
-        $date = $request->query('date');
+        
         $masterId = Auth::id();
-
+        
         $occupied = MasterClass::where('master_id', $masterId)
             ->where('date', $date)
             ->pluck('time_slot')
             ->toArray();
-
-        return response()->json(array_fill_keys($occupied, true));
+        
+        // Возвращаем объект, где ключи — занятые слоты, значение — true
+        $result = [];
+        foreach ($occupied as $slot) {
+            $result[$slot] = true;
+        }
+        
+        return response()->json($result);
     }
 }
