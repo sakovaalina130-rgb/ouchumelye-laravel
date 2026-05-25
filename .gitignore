@@ -30,3 +30,4 @@ Thumbs.db
 !.env.uat
 !.env.prod
 !.env.ci
+.env.docker
