@@ -1,47 +1,54 @@
 # CI/CD Pipeline Documentation
 
-## Overview
-This pipeline is triggered on push or pull request to branches:
-- `main` (production)
-- `uat` (user acceptance testing)
-- `development` (development)
+## Обзор
 
-## Pipeline Stages
+Пайплайн запускается при пуше или pull request в ветки:
+- `main` (продакшен)
+- `uat` (тестирование)
+- `development` (разработка)
 
-### 1. Tests (PHPUnit)
-- Minimum coverage: 50%
-- Fail condition: Tests fail or coverage < 50%
+## Этапы пайплайна
 
-### 2. Static Analysis (PHPStan/Larastan)
-- Level: 5
-- Fail condition: Any error found
+### 1. Тесты (PHPUnit)
+- Минимальное покрытие кода: 50%
+- Условие остановки: тесты не прошли или покрытие ниже 50%
 
-### 3. Linting (Laravel Pint)
-- Preset: PSR-12
-- Mode: --test (no auto-fix)
-- Fail condition: Any style violation
+### 2. Статический анализ (PHPStan / Larastan)
+- Уровень проверки: 5
+- Условие остановки: любая найденная ошибка
 
-### 4. Deployment Simulation
-- development → .env.dev
-- uat → .env.uat
-- main → .env.prod
+### 3. Линтинг (Laravel Pint)
+- Стандарт: PSR-12
+- Режим: --test (без авто-исправления)
+- Условие остановки: любое нарушение стиля кода
 
-### 5. Manual Approval (production only)
-- Required for main branch
-- GitHub Environments with reviewer
+### 4. Симуляция деплоя
+- `development` → использует `.env.dev`
+- `uat` → использует `.env.uat`
+- `main` → использует `.env.prod`
+- Выводит сообщение: "Deploying to [ENV] with .env.[env]"
 
-## Environment Files
-- `.env.dev` - Development environment
-- `.env.uat` - UAT environment
-- `.env.prod` - Production environment
-- `.env.ci` - CI pipeline (SQLite in-memory)
+### 5. Ручное подтверждение (только для production)
+- Требуется для ветки `main`
+- GitHub Environments с обязательным проверяющим
 
-## Pipeline Triggers
-- Push to main, development, uat branches
-- Pull requests to these branches
+## Файлы окружения
 
-## Success Criteria
-1. All tests pass + coverage >= 50%
-2. No static analysis errors
-3. No linter violations
-4. Manual approval for production
+| Файл | Назначение |
+|------|------------|
+| `.env.dev` | Среда разработки (ветка development) |
+| `.env.uat` | Среда тестирования (ветка uat) |
+| `.env.prod` | Продакшен среда (ветка main) |
+| `.env.ci` | CI пайплайн (SQLite in-memory) |
+
+## Триггеры запуска
+
+- Пуш в ветки `main`, `development`, `uat`
+- Pull request в эти ветки
+
+## Критерии успеха
+
+1. Все тесты пройдены + покрытие кода ≥ 50%
+2. Нет ошибок статического анализа
+3. Нет нарушений линтера
+4. Ручное подтверждение для продакшена
