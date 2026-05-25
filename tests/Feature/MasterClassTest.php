@@ -368,10 +368,10 @@ class MasterClassTest extends TestCase
 
         // Принудительно сохраняем в БД
         $this->assertDatabaseHas('master_classes', ['time_slot' => '11-13']);
-        
+
         $response = $this->actingAs($master)->get('/check-slots?date=2026-06-20');
         $this->assertEquals(200, $response->getStatusCode());
-        
+
         $content = json_decode($response->getContent(), true);
         // Проверяем, что в ответе есть ключ '11-13'
         $this->assertArrayHasKey('11-13', $content);
