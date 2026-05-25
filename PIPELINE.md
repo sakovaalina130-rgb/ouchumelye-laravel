@@ -8,51 +8,40 @@ This pipeline is triggered on push or pull request to branches:
 
 ## Pipeline Stages
 
-### 1. Linting (Laravel Pint)
-- **Tool**: Laravel Pint with PSR-12 preset
-- **Mode**: Test mode (--test flag)
-- **Fail condition**: Any code style violation found
+### 1. Tests (PHPUnit)
+- Minimum coverage: 50%
+- Fail condition: Tests fail or coverage < 50%
 
 ### 2. Static Analysis (PHPStan/Larastan)
-- **Tool**: Larastan (PHPStan wrapper)
-- **Level**: 5
-- **Fail condition**: Any error found (warnings ignored)
+- Level: 5
+- Fail condition: Any error found
 
-### 3. Tests with Coverage
-- **Tool**: PHPUnit with Xdebug
-- **Minimum coverage**: 50%
-- **Database**: SQLite in-memory (from .env.ci)
-- **Fail condition**: Tests fail or coverage < 50%
+### 3. Linting (Laravel Pint)
+- Preset: PSR-12
+- Mode: --test (no auto-fix)
+- Fail condition: Any style violation
 
 ### 4. Deployment Simulation
-- **development** → uses `.env.dev`
-- **uat** → uses `.env.uat`
-- **main** → uses `.env.prod`
-- **Condition**: Only runs if previous steps succeed
+- development → .env.dev
+- uat → .env.uat
+- main → .env.prod
 
-### 5. Production Approval (main only)
-- **Environment**: GitHub Environments with required reviewer
-- **Manual approval**: Required before deployment
+### 5. Manual Approval (production only)
+- Required for main branch
+- GitHub Environments with reviewer
 
 ## Environment Files
 - `.env.dev` - Development environment
 - `.env.uat` - UAT environment
-- `.env.prod` - Production environment (APP_KEY left blank)
+- `.env.prod` - Production environment
 - `.env.ci` - CI pipeline (SQLite in-memory)
 
-## Required Secrets
-- None for basic pipeline (uses dummy values)
-
 ## Pipeline Triggers
-- Push to any of the three long-lived branches
+- Push to main, development, uat branches
 - Pull requests to these branches
 
-## Artifacts
-- Coverage reports uploaded to Codecov (if configured)
-
 ## Success Criteria
-1. ✅ No linter violations
-2. ✅ No static analysis errors
-3. ✅ All tests pass
-4. ✅ Test coverage >= 50%
-5. ✅ Manual approval for production (if main branch)
+1. All tests pass + coverage >= 50%
+2. No static analysis errors
+3. No linter violations
+4. Manual approval for production
