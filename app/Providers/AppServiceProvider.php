@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Если среда не локальная (или если это Codespaces), форсируем HTTPS
+        if (env('APP_ENV') !== 'local' || isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+            URL::forceScheme('https');
+        }
     }
 }
