@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/cabinet');
+            return redirect('/cabinet');
         }
 
         return back()->withErrors(['email' => 'Неверный email или пароль']);
