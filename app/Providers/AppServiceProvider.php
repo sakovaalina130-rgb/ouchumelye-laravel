@@ -20,8 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Вместо env('APP_ENV') !== 'local' используем красивый и безопасный метод Laravel
-        if (!app()->isLocal() || isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+        // Безопасное включение HTTPS для Codespaces через проверку прокси-заголовка
+        if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
             URL::forceScheme('https');
         }
     }
