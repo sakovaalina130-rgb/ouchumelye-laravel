@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL; // <-- Вот эта строка решает проблему
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\ServiceProvider; // <-- Вот эта строка решает проблему
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,8 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Если среда не локальная (или если это Codespaces), форсируем HTTPS
-        if (env('APP_ENV') !== 'local' || isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+        // Вместо env('APP_ENV') !== 'local' используем красивый и безопасный метод Laravel
+        if (!app()->isLocal() || isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
             URL::forceScheme('https');
         }
     }

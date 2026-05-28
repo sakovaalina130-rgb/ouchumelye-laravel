@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Auth;
 class CabinetController extends Controller
 {
     public function index()
-    {        
+    {
         if (!Auth::check()) {
             return redirect('/login');
         }
-        
+
         $user = Auth::user();
 
         if ($user->isMaster()) {
